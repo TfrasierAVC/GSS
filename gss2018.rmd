@@ -78,7 +78,8 @@ chisqtestGC(table1)
 fisher.test(table1)
 ```
 
-
+Thhe chi- squared test says the p value is 0.0202, less than 0.05, so we reject the null hypothesis. 
+the fisher is exact test pvalue is 0.01651, less than 0.05 so we conclude that there is a relationship between gunowners and opinion capital punishment. people who own a gun are on average 2.3 times more likely to favor capitol punishments.
 
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
@@ -89,7 +90,16 @@ fisher.test(table1)
 
 Is there a difference in years of education (EDUC) between the those who did or did not vote in 2012 (VOTE12)?
 
+$H_$ There is a difference in education for those who did vote in 2012.
+
+$A_$ There is no difference in education for those who did in 2012.
+
+
+
 ## Methods
+
+One variable is numerical and the other variable is catigorical so therefore we use num~cat. 
+
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
 
@@ -101,13 +111,31 @@ Is there a difference in years of education (EDUC) between the those who did or 
 
 #### Graphical Descriptive Results
 
+
+```{r}
+plot(EDUC~VOTE12,data=GSSdata)
+```
+
+
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 #### Numerical Descriptive Results
 
+```{r}
+favstats(EDUC~VOTE12,data=GSSdata)
+```
+
+
+
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ### Inferential Results
+
+
+```{r}
+t.test(EDUC~VOTE12,data=GSSdata)
+```
+
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
@@ -117,6 +145,11 @@ Is there a difference in years of education (EDUC) between the those who did or 
 
 Determine if a persons performance on the wordsum test (WORDSUM) is independent of their level of schooling (DEGREE).
 
+$H_$ There is a difference in education for those who did vote in 2012.
+
+$A_$ There is no difference in education for those who did in 2012.
+
+
 ## Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
@@ -129,13 +162,33 @@ Determine if a persons performance on the wordsum test (WORDSUM) is independent 
 
 #### Graphical Descriptive Results
 
+```{r}
+plot(WORDSUM~DEGREE,data=GSSdata)
+```
+
+
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 #### Numerical Descriptive Results
 
+```{r}
+favstats(WORDSUM~DEGREE,data=GSSdata)
+```
+
+
+
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ### Inferential Results
+
+```{r}
+model1 <- aov(WORDSUM~DEGREE,data=GSSdata)
+summary.aov(model1)
+```
+
+
+
+
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
